@@ -10,6 +10,8 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+  const [inputValue, setInputValue] = useState(searchQuery);
 
   // Fetch persons when the component mounts
   useEffect(() => {
@@ -50,15 +52,42 @@ function App() {
     }
   };
 
-  // Add search handler
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const query = formData.get("search").trim();
-    if (query) {
-      setSearchQuery(query);
+  // Add debounced search function
+  const handleInputChange = async (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    
+    if (value.trim().length < 2) {
+      setSuggestions([]);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${BASE_URL}/search/person?api_key=${API_KEY}&query=${value}`
+      );
+      const data = await response.json();
+      setSuggestions(data.results.slice(0, 5)); // Limit to 5 suggestions
+    } catch (err) {
+      console.error("Error fetching suggestions:", err);
+      setSuggestions([]);
     }
   };
+
+  // Modify handleSearch
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSuggestions([]); // Clear suggestions
+    setSearchQuery(inputValue);
+  };
+
+  // Add suggestion selection handler
+  const handleSuggestionClick = (suggestion) => {
+    setInputValue(suggestion.name);
+    setSearchQuery(suggestion.name);
+    setSuggestions([]);
+  };
+
   if (loading) return <div className="App">Loading...</div>;
   if (error) return <div className="App">Error fetching data.</div>;
 
@@ -66,13 +95,29 @@ function App() {
     <div className="App">
       <h1>The Movie Database Persons</h1>
       <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          name="search"
-          placeholder="Search for a person..."
-          defaultValue={searchQuery}
-        />
-        <button type="submit">Search</button>
+        <div className="search-container">
+          <input
+            type="text"
+            name="search"
+            placeholder="Search for a person..."
+            value={inputValue}
+            onChange={handleInputChange}
+            autocomplete="off"
+          />
+          {suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((suggestion) => (
+                <li
+                  key={suggestion.id}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion.name}
+                </li>
+              ))}
+            </ul>
+          )}
+          <button type="submit">Search</button>
+        </div>
       </form>
       {persons.length > 0 ? (
         <>
