@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from "react";
 import Person from "./components/Person";
 import { API_KEY, BASE_URL } from "./config";

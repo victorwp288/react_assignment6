@@ -1,4 +1,3 @@
-// src/components/ImagesFor.js
 import React, { useState, useEffect } from "react";
 import { API_KEY, BASE_URL, IMAGE_BASE_URL } from "../config";
 import "../styles/ImagesFor.css";

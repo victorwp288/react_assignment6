@@ -1,4 +1,3 @@
-// src/components/KnownFor.js
 import React from "react";
 import "../styles/KnownFor.css";
 

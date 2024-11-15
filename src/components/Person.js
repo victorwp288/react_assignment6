@@ -1,4 +1,3 @@
-// src/components/Person.js
 import React from "react";
 import KnownFor from "../components/KnownFor";
 import ImagesFor from "../components/ImagesFor";
