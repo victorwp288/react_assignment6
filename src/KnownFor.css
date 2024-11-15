@@ -1,0 +1,16 @@
+/* src/components/KnownFor.css */
+.known-for {
+  margin-top: 20px;
+}
+
+.known-for-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.known-for-item h4 {
+  margin: 0 0 5px 0;
+}

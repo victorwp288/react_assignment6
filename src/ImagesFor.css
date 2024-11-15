@@ -1,0 +1,18 @@
+/* src/components/ImagesFor.css */
+.images-for {
+  margin-top: 20px;
+}
+
+.images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.images-grid img {
+  width: 100px;
+  height: auto;
+  border-radius: 4px;
+}
