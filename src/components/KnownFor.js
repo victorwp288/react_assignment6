@@ -11,7 +11,9 @@ function KnownFor({ knownFor }) {
           <li key={item.id} className="known-for-item">
             <h4>{item.title || item.name}</h4>
             <p>
-              <strong>Release Date:</strong> {item.release_date || "N/A"}
+              <strong>Release Date:</strong> {item.release_date ? 
+                item.release_date.split('-').reverse().join('-') : 
+                "N/A"}
             </p>
             <p>{item.overview || "No overview available."}</p>
           </li>
