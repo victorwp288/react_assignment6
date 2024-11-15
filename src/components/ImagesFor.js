@@ -1,7 +1,7 @@
 // src/components/ImagesFor.js
 import React, { useState, useEffect } from "react";
-import { API_KEY, BASE_URL, IMAGE_BASE_URL } from "./config";
-import "./ImagesFor.css";
+import { API_KEY, BASE_URL, IMAGE_BASE_URL } from "../config";
+import "../styles/ImagesFor.css";
 
 function ImagesFor({ id }) {
   const [images, setImages] = useState([]);
@@ -11,9 +11,11 @@ function ImagesFor({ id }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/person/${id}/images?api_key=${API_KEY}`);
+        const response = await fetch(
+          `${BASE_URL}/person/${id}/images?api_key=${API_KEY}`
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setImages(data.profiles);

@@ -1,14 +1,14 @@
 // src/components/Person.js
 import React from "react";
-import KnownFor from "./KnownFor";
-import ImagesFor from "./ImagesFor";
-import { IMAGE_BASE_URL } from "./config";
-import "./Person.css";
+import KnownFor from "../components/KnownFor";
+import ImagesFor from "../components/ImagesFor";
+import { IMAGE_BASE_URL } from "../config";
+import "../styles/Person.css";
 
 function Person({ person }) {
   const profileImage = person.profile_path
     ? `${IMAGE_BASE_URL}w200${person.profile_path}`
-    : "https://via.placeholder.com/200x300?text=No+Image";
+    : "missing.png";
 
   return (
     <div className="person-card">

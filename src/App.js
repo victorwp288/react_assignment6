@@ -1,8 +1,8 @@
 // src/App.js
 import React, { useState, useEffect } from "react";
-import Person from "./Person";
+import Person from "./components/Person";
 import { API_KEY, BASE_URL } from "./config";
-import "./App.css";
+import "./styles/App.css";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("spielberg");
@@ -35,8 +35,8 @@ function App() {
     };
 
     fetchPersons();
-  }, [searchQuery]); 
-  
+  }, [searchQuery]);
+
   // Handlers for navigation buttons
   const handleNext = () => {
     if (currentIndex < persons.length - 1) {

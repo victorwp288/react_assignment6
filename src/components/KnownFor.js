@@ -1,6 +1,6 @@
 // src/components/KnownFor.js
 import React from "react";
-import "./KnownFor.css";
+import "../styles/KnownFor.css";
 
 function KnownFor({ knownFor }) {
   return (
