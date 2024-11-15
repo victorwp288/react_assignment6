@@ -52,7 +52,7 @@ function App() {
     }
   };
 
-  // Add debounced search function
+  // Add search function
   const handleInputChange = async (e) => {
     const value = e.target.value;
     setInputValue(value);
@@ -74,14 +74,13 @@ function App() {
     }
   };
 
-  // Modify handleSearch
   const handleSearch = (e) => {
     e.preventDefault();
-    setSuggestions([]); // Clear suggestions
+    setSuggestions([]);
     setSearchQuery(inputValue);
   };
 
-  // Add suggestion selection handler
+  // Add suggestion selection
   const handleSuggestionClick = (suggestion) => {
     setInputValue(suggestion.name);
     setSearchQuery(suggestion.name);
